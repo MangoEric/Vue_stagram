@@ -1,20 +1,22 @@
 <template>
   <div class="header">
     <ul class="header-button-left">
-      <li>Cancel</li>
+      <li v-if="step == 1 || step == 2">Cancel</li>
     </ul>
     <ul class="header-button-right">
-      <li>Next</li>
+      <li v-if="step == 1" @click="step++" >Next</li>
+      <li v-if="step == 2" @click="publish">Post</li>
     </ul>
     <img src="./assets/logo.png" class="logo" />
   </div>
 
-  <Container :게시물="게시물" :step="step"/>
-  <button @click="more">더보기</button>
-
+  <Container :게시물="게시물" :step="step" :이미지="이미지" @write="작성한글 = $event"/>
+  <div class="more-container">
+    <button @click="more" class="button more">더보기</button>
+  </div>
   <div class="footer">
     <ul class="footer-button-plus">
-      <input type="file" id="file" class="inputfile" />
+      <input @change="upload" type="file" id="file" class="inputfile" />
       <label for="file" class="input-plus">+</label>
     </ul>
  </div>
@@ -33,6 +35,8 @@ export default {
       게시물 : postdata,
       더보기 : 0,
       step : 0,
+      이미지 : '',
+      작성한글 : '',
     }
   },
   components: {
@@ -45,6 +49,29 @@ export default {
         this.게시물.push(결과.data);
         this.더보기++;
       })
+    },
+    upload(e){
+      let 파일 = e.target.files;
+      // console.log(파일[0].type);
+      let url = URL.createObjectURL(파일[0])
+      console.log(url)
+      this.이미지 = url;
+      this.step++;
+
+    },
+    publish(){
+      var 내게시물 = {
+        name: "Eric",
+        userImage: "https://placeimg.com/100/100/arch",
+        postImage: this.이미지,
+        likes: 0,
+        date: "May 15",
+        liked: false,
+        content: this.작성한글,
+        filter: "perpetua"
+      }
+      this.게시물.unshift(내게시물);
+      this.step = 0;
     }
   }
 }
@@ -127,4 +154,35 @@ ul {
   border-right: 1px solid #eee;
   border-left: 1px solid #eee;
 }
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.more {
+  color: black;
+  border-radius: 10px;
+  background-color: #e7e7e7;
+}
+
+.more:hover {
+  background-color: white;
+  border-radius: 10px;
+  border: 2px solid #e7e7e7;
+}
+.more-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 </style>
