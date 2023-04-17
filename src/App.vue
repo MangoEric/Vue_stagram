@@ -9,6 +9,7 @@
     </ul>
     <img src="./assets/logo.png" class="logo" />
   </div>
+  <h4>{{ $store.state.name }}</h4>
 
   <Container :게시물="게시물" :step="step" :이미지="이미지" @write="작성한글 = $event"/>
   <div class="more-container">
