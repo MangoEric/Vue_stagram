@@ -1,5 +1,9 @@
 <template>
-  <div :class="필터 + ' filter-item'" :style="`background-image:url(${이미지})`"></div> 
+  <div :class="필터 + ' filter-item'" :style="`background-image:url(${이미지})`">
+    <slot name="a"></slot>
+    <!-- 부모한테 보낼때 -->
+    <slot :msg="msg"></slot>
+  </div> 
 </template>
 
 <script>
@@ -8,7 +12,12 @@ export default {
   props :{
     이미지 : String,
     필터 : String,
-  }
+  },
+  data(){
+    return{
+      msg : '입니당',
+    }
+  },
 }
 </script>
 
