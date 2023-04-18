@@ -9,12 +9,6 @@
     </ul>
     <img src="./assets/logo.png" class="logo" />
   </div>
-  <h4>{{ $store.state.name }}</h4>
-  <button @click="$store.commit('chageName')">버튼</button>
-
-  <h4>{{ $store.state.age }}</h4>
-  <button @click="$store.commit('addAge')">버튼</button>
-  <button @click="$store.commit('ten',10)">10배 버튼</button>
 
   <Container :게시물="게시물" :step="step" :이미지="이미지" @write="작성한글 = $event"/>
   <div class="more-container">

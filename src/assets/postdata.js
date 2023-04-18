@@ -27,6 +27,6 @@ export default [
     date: "Apr 4",
     liked: false,
     content: "우리집 개는 화장실 물도 내림",
-    filter: "lofi"
+    filter: "_1977"
   }
 ]
