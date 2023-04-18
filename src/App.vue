@@ -10,8 +10,8 @@
     <img src="./assets/logo.png" class="logo" />
   </div>
 
-  <p>{{ now() }} {{ now2 }} {{ 카운트 }}</p>
-  <button @click="카운트++">버튼</button>
+  <p>{{ name }} {{ age }} {{ likes }} {{ 내이름 }}</p>
+  <button @click="addAge()">버튼</button>
 
   <Container :게시물="게시물" :step="step" :이미지="이미지" @write="작성한글 = $event"/>
   <div class="more-container">
@@ -30,6 +30,7 @@
 import Container from './components/ContainerCom.vue'
 import postdata from './assets/postdata.js'
 import axios from 'axios'
+import {mapMutations, mapState} from 'vuex'
 
 export default {
   name: 'App',
@@ -52,18 +53,16 @@ export default {
   components: {
     Container,
   },
-  //computed 는 사용해도 실행되지 않습니다.
-  //처음 실행되고 값을 간직함
   computed : {
-    now2(){
-      return new Date()
+    name(){
+      return this.$store.state.name
     },
+    ...mapState(['age', 'likes']),
+    ...mapState({ 내이름 : 'name'}),
   },
-  //method 는 사용할때마다 실행됨
   methods :{
-    now(){
-      return new Date()
-    },
+    ...mapMutations(['setMore', 'addLike', 'addAge'])
+    ,
     more(){
       axios.get(`https://codingapple1.github.io/vue/more${this.더보기}.json`)
       .then((결과)=>{
