@@ -10,6 +10,9 @@
     <img src="./assets/logo.png" class="logo" />
   </div>
 
+  <p> {{ $store.state.more }}</p>
+  <button @click="$store.dispatch('getData')">더보기</button>
+
   <Container :게시물="게시물" :step="step" :이미지="이미지" @write="작성한글 = $event"/>
   <div class="more-container">
     <button @click="more" class="button more">더보기</button>
