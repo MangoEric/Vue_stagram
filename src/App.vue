@@ -10,8 +10,8 @@
     <img src="./assets/logo.png" class="logo" />
   </div>
 
-  <p> {{ $store.state.more }}</p>
-  <button @click="$store.dispatch('getData')">더보기</button>
+  <p>{{ now() }} {{ now2 }} {{ 카운트 }}</p>
+  <button @click="카운트++">버튼</button>
 
   <Container :게시물="게시물" :step="step" :이미지="이미지" @write="작성한글 = $event"/>
   <div class="more-container">
@@ -41,6 +41,7 @@ export default {
       이미지 : '',
       작성한글 : '',
       선택한필터 : '',
+      카운트 : 0,
     }
   },
   mounted(){
@@ -51,7 +52,18 @@ export default {
   components: {
     Container,
   },
+  //computed 는 사용해도 실행되지 않습니다.
+  //처음 실행되고 값을 간직함
+  computed : {
+    now2(){
+      return new Date()
+    },
+  },
+  //method 는 사용할때마다 실행됨
   methods :{
+    now(){
+      return new Date()
+    },
     more(){
       axios.get(`https://codingapple1.github.io/vue/more${this.더보기}.json`)
       .then((결과)=>{
