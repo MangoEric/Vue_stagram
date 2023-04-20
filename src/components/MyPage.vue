@@ -10,13 +10,34 @@
 </template>
 
 <script>
-import { onMounted, ref } from 'vue';
+import { computed, onMounted, reactive, ref, toRefs, watch } from 'vue';
 import axios from 'axios';
+import { useStore } from 'vuex'
 
 export default {
   name : 'MyPage',
-  setup ()  {
+  props : {
+    one : Number,
+  }
+  ,
+  setup (props)  {
+    //보통 array, object 집어 넣음
+    let test = reactive({name : 'ko'})
+    test;
+    // 그 나머지 자료형 집어 넣음
     let follower = ref([]);
+
+    let {one} = toRefs(props);
+    console.log(one.value)
+    
+    watch(one , ()=>{
+      //변경될때마다 반응하는 함수
+    })
+    let 결과 = computed( ()=>{ return follower.value.length })
+    console.log(결과.value)
+
+    let store = useStore();
+    console.log(store.state.name)
 
     onMounted(()=>{
       axios.get('/follower.json').then((a)=>{
@@ -33,6 +54,6 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 
 </style>
