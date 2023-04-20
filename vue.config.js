@@ -11,5 +11,6 @@ module.exports = {
     workboxOptions: {
       exclude: [/\.map$/, /manifest\.json$/, 'index.html']
     }
-  }
+  },
+  publicPath : '/vuestagram',
 }
