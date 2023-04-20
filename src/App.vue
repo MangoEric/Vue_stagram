@@ -11,11 +11,11 @@
   </div>
 
   <Container :게시물="게시물" :step="step" :이미지="이미지" @write="작성한글 = $event"/>
-  <div class="more-container">
+  <div class="more-container" v-if="step == 0">
     <button @click="more" class="button more">더보기</button>
   </div>
   <div class="footer">
-    <ul class="footer-button-plus">
+    <ul class="footer-button-plus" v-if="step == 0">
       <input @change="upload" type="file" id="file" class="inputfile" />
       <label for="file" class="input-plus">+</label>
     </ul>
@@ -34,7 +34,7 @@ export default {
     return{
       게시물 : postdata,
       더보기 : 0,
-      step : 0,
+      step : 3,
       이미지 : '',
       작성한글 : '',
       선택한필터 : '',
