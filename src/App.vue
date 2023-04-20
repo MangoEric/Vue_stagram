@@ -10,9 +10,6 @@
     <img src="./assets/logo.png" class="logo" />
   </div>
 
-  <p>{{ name }} {{ age }} {{ likes }} {{ 내이름 }}</p>
-  <button @click="addAge()">버튼</button>
-
   <Container :게시물="게시물" :step="step" :이미지="이미지" @write="작성한글 = $event"/>
   <div class="more-container">
     <button @click="more" class="button more">더보기</button>
@@ -30,7 +27,6 @@
 import Container from './components/ContainerCom.vue'
 import postdata from './assets/postdata.js'
 import axios from 'axios'
-import {mapMutations, mapState} from 'vuex'
 
 export default {
   name: 'App',
@@ -42,7 +38,6 @@ export default {
       이미지 : '',
       작성한글 : '',
       선택한필터 : '',
-      카운트 : 0,
     }
   },
   mounted(){
@@ -54,15 +49,9 @@ export default {
     Container,
   },
   computed : {
-    name(){
-      return this.$store.state.name
-    },
-    ...mapState(['age', 'likes']),
-    ...mapState({ 내이름 : 'name'}),
+
   },
   methods :{
-    ...mapMutations(['setMore', 'addLike', 'addAge'])
-    ,
     more(){
       axios.get(`https://codingapple1.github.io/vue/more${this.더보기}.json`)
       .then((결과)=>{
