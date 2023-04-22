@@ -4,6 +4,7 @@
       <li v-if="step == 1 || step == 2">Cancel</li>
     </ul>
     <ul class="header-button-right">
+      <!-- <li v-if="step ==0" @click=" step = 3">MyPage</li> -->
       <li v-if="step == 1" @click="step++" >Next</li>
       <li v-if="step == 2" @click="publish">Post</li>
     </ul>
@@ -34,7 +35,7 @@ export default {
     return{
       게시물 : postdata,
       더보기 : 0,
-      step : 3,
+      step : 0,
       이미지 : '',
       작성한글 : '',
       선택한필터 : '',
