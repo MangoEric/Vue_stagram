@@ -4,7 +4,7 @@
 You can see my project below<br>
 👇👇👇
 
-### <a href="https://eric-jongyoung.github.io/Vue_stagram/">link 🔗</a>
+### <a href="https://mangoeric.github.io/Vue_stagram/">link 🔗</a>
 
 
 
